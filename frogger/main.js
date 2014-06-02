@@ -11,6 +11,8 @@ var main_state = {
 		this.game.load.tilemap('map', 'assets/tilemap.csv', null, Phaser.Tilemap.CSV);
 		this.game.load.image('tiles', 'assets/frogger_tiles.png');
 
+		this.game.load.image('frog', 'assets/frog.png');
+
     },
 
     create: function() { 
@@ -28,10 +30,38 @@ var main_state = {
     	//  Resize the world
     	this.layer.resizeWorld();
 
+    	// 
+    	this.map.setCollisionBetween(3, 1);
+
+    	// Place frog
+    	this.frog = this.game.add.sprite(224, 448, 'frog');
+    	this.frog.inputEnabled = true;
+
+    	// Config keyboard
+    	this.upKey = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
+    	this.downKey = this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+    	this.leftKey = this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+    	this.rightKey = this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT)
+
     },
     
     update: function() {
 		// Function called 60 times per second
+
+		// Move frog
+		//this.upKey.onDown.add(function() {this.frog.y--; console.log(this.frog.y);}, this);
+		//this.downKey.onDown.add(function(downKey) {this.frog.y += 1;}, this);
+
+
+		if (this.upKey.isDown) {
+			this.frog.y--;
+			console.log(this.frog.y);
+		} else if (this.downKey.isDown) {
+			this.frog.y++;
+		}
+
+
+
     },
 };
 
