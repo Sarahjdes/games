@@ -42,6 +42,7 @@ var main_state = {
 
         this.player.body.damping = 1;
     	this.player.body.collideWorldBounds = true;
+        this.player.body.gravity.y = 1000;
 
         game.camera.follow(this.player);
 
@@ -73,17 +74,19 @@ var main_state = {
         }
 
         if(this.cursors.down.isDown){
-            this.player.body.velocity.y = 350;
+            this.player.body.velocity.y = 300;
         }
 
         if(this.cursors.up.isDown && this.player.body.onFloor()){
-            this.player.body.velocity.y = -300;
+            this.player.body.velocity.y = -600;
         }
+
+        console.log(this.player.body.velocity.y);
 
     },
 
     createCollectable: function(x,y) {
-        this.collectable = this.collectables.create((x-1)*32+8, (y-1)*32+8, 'collectable');
+        this.collectable = this.collectables.create((x-1)*32+8, (y-1)*32+8, 'collectable'); 
         this.collectable.body.allowGravity = false;
     },
 
