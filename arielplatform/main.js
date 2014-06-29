@@ -1,6 +1,8 @@
 // Initialize Phaser, and creates a 400x490px game
 var game = new Phaser.Game(800, 512, Phaser.AUTO, 'game_div');
 
+var jumptimer = 0;
+
 // Creates a new 'main' state that wil contain the game
 var main_state = {
 
@@ -72,17 +74,28 @@ var main_state = {
         } else if(this.cursors.right.isDown){
             this.player.body.velocity.x = 150;
         }
-
+        /*
         if(this.cursors.down.isDown){
-            this.player.body.velocity.y = 300;
+            this.player.body.velocity.y = 0;
         }
-
-        if(this.cursors.up.isDown && this.player.body.onFloor()){
-            this.player.body.velocity.y = -600;
+        */
+        if(this.cursors.up.isDown && this.player.body.onFloor()){       // Key is pressed and player is on floor
+            this.player.body.velocity.y = -375;
+            jumptimer = 1;                                              // Sets it != 0 so player is allowed to jump
+        } else if(this.cursors.up.isDown && (jumptimer != 0)) {
+            console.log(jumptimer);
+            console.log(this.player.body.velocity.y);
+            if(jumptimer > 15){                                         // Has reached max duration of the jump
+                jumptimer = 0;                                          // Doesn't allow the player to jump anymore
+            } else if(this.player.body.velocity.y == 0){
+                jumptimer = 15;
+            } else {
+                jumptimer++;                                            // While player is jumping, some kind of timer ++
+                this.player.body.velocity.y = -375;
+            }
+        } else if(jumptimer != 0){                                      // Resets the "timer" when player is on floor && !jumping
+            jumptimer = 0;
         }
-
-        console.log(this.player.body.velocity.y);
-
     },
 
     createCollectable: function(x,y) {
