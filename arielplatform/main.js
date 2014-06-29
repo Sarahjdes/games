@@ -1,7 +1,7 @@
 // Initialize Phaser, and creates a 400x490px game
 var game = new Phaser.Game(800, 512, Phaser.AUTO, 'game_div');
 
-var jumptimer = 0;
+var jumpTimer = 0;
 
 // Creates a new 'main' state that wil contain the game
 var main_state = {
@@ -14,7 +14,8 @@ var main_state = {
 		this.game.load.image('tiles', 'assets/arielplatform_tiles.png'); 
 
 		// Sprites
-		this.game.load.image('player', 'assets/ariel.png');
+		//this.game.load.image('player', 'assets/ariel.png');
+        this.game.load.spritesheet('player', 'assets/ariel_spritesheet.png', 32, 32);
         this.game.load.image('collectable', 'assets/collectable.png');
 
     },
@@ -45,6 +46,8 @@ var main_state = {
         this.player.body.damping = 1;
     	this.player.body.collideWorldBounds = true;
         this.player.body.gravity.y = 1000;
+        this.player.animations.add('left', [0, 1, 2], 10, true);
+        this.player.animations.add('right', [4, 5, 6], 10, true);
 
         game.camera.follow(this.player);
 
@@ -70,9 +73,14 @@ var main_state = {
         this.player.body.velocity.x = 0;
 
         if(this.cursors.left.isDown){
+            this.player.animations.play('left');
             this.player.body.velocity.x = -150; 
         } else if(this.cursors.right.isDown){
+            this.player.animations.play('right');
             this.player.body.velocity.x = 150;
+        } else {
+            this.player.animations.stop();
+            this.player.frame = 3;
         }
         /*
         if(this.cursors.down.isDown){
@@ -81,21 +89,21 @@ var main_state = {
         */
         if(this.cursors.up.isDown && this.player.body.onFloor()){       // Key is pressed and player is on floor
             this.player.body.velocity.y = -375;
-            jumptimer = 1;                                              // Sets it != 0 so player is allowed to jump
-        } else if(this.cursors.up.isDown && (jumptimer != 0)) {
-            console.log(jumptimer);
+            jumpTimer = 1;                                              // Sets it != 0 so player is allowed to jump
+        } else if(this.cursors.up.isDown && (jumpTimer != 0)) {
+            console.log(jumpTimer);
             console.log(this.player.body.velocity.y);
-            if(jumptimer > 15){                                         // Has reached max duration of the jump
-                jumptimer = 0;                                          // Doesn't allow the player to jump anymore
+            if(jumpTimer > 15){                                         // Has reached max duration of the jump
+                jumpTimer = 0;                                          // Doesn't allow the player to jump anymore
             } else if(this.player.body.velocity.y == 0){
-                jumptimer = 15;
+                jumpTimer = 15;
             } else {
-                jumptimer++;                                            // While player is jumping, some kind of timer ++
+                jumpTimer++;                                            // While player is jumping, some kind of timer ++
                 this.player.body.velocity.y = -375;
             }
-        } else if(jumptimer != 0){                                      // Resets the "timer" when player is on floor && !jumping
-            jumptimer = 0;
-        }
+        } else if(jumpTimer != 0){                                      // Resets the "timer" when player is on floor && !jumping
+            jumpTimer = 0;
+        } 
     },
 
     createCollectable: function(x,y) {
