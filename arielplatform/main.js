@@ -13,6 +13,7 @@ var main_state = {
 
 		// Sprites
 		this.game.load.image('player', 'assets/ariel.png');
+        this.game.load.image('collectable', 'assets/collectable.png');
 
     },
 
@@ -46,12 +47,22 @@ var main_state = {
 
         this.cursors = this.game.input.keyboard.createCursorKeys(); 
 
+        // Collectables
+        this.collectables = this.game.add.group();
+        this.collectables.enableBody = true;
+
+
+        this.createCollectable(4,6);
+
     },
     
     update: function() {
 		// Function called 60 times per second
 
-		game.physics.arcade.collide(this.layer, this.player);
+		this.game.physics.arcade.collide(this.layer, this.player);
+        this.game.physics.arcade.collide(this.layer, this.collectables);
+
+        this.game.physics.arcade.overlap(this.player, this.collectables, this.collectCollectable, null, this.game);
 
         this.player.body.velocity.x = 0;
 
@@ -69,6 +80,15 @@ var main_state = {
             this.player.body.velocity.y = -300;
         }
 
+    },
+
+    createCollectable: function(x,y) {
+        this.collectable = this.collectables.create((x-1)*32+8, (y-1)*32+8, 'collectable');
+        this.collectable.body.allowGravity = false;
+    },
+
+    collectCollectable: function(player, collectable) {
+        collectable.kill();
     },
 };
 
