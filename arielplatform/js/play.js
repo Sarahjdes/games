@@ -1,30 +1,9 @@
-// Initialize Phaser, and creates a 400x490px game
-var game = new Phaser.Game(800, 512, Phaser.AUTO, 'game_div');
-
 var jumpTimer = 0;
 
-// Creates a new 'main' state that wil contain the game
-var main_state = {
-
-    preload: function() { 
-		// Function called first to load all the assets
-
-		// Tilemap set up
-		this.game.load.tilemap('map', 'assets/tilemap.csv', null, Phaser.Tilemap.CSV);
-		this.game.load.image('tiles', 'assets/arielplatform_tiles.png'); 
-
-		// Sprites
-		//this.game.load.image('player', 'assets/ariel.png');
-        this.game.load.spritesheet('player', 'assets/ariel_spritesheet.png', 32, 32);
-        this.game.load.image('collectable', 'assets/collectable.png');
-
-    },
+var playState = {
 
     create: function() { 
     	// Fuction called after 'preload' to setup the game    
-
-    	// Enable physics on this game
-    	this.game.physics.startSystem(Phaser.Physics.ARCADE); 
 
     	// Set up map
     	this.map = this.game.add.tilemap('map', 32, 32);
@@ -38,10 +17,10 @@ var main_state = {
     	// this.layer.debug = true;
 
     	// Set up player
-    	this.player = this.game.add.sprite(300, 175, 'player');
+    	this.player = this.game.add.sprite(640, 175, 'player');
     	this.game.physics.enable(this.player); 	// enable physics on this player
 
-    	this.game.physics.arcade.gravity.y = 300;
+    	//this.game.physics.arcade.gravity.y = 300;
 
         this.player.body.damping = 1;
     	this.player.body.collideWorldBounds = true;
@@ -74,10 +53,10 @@ var main_state = {
 
         if(this.cursors.left.isDown){
             this.player.animations.play('left');
-            this.player.body.velocity.x = -150; 
+            this.player.body.velocity.x = -125; 
         } else if(this.cursors.right.isDown){
             this.player.animations.play('right');
-            this.player.body.velocity.x = 150;
+            this.player.body.velocity.x = 125;
         } else {
             this.player.animations.stop();
             this.player.frame = 3;
@@ -88,7 +67,7 @@ var main_state = {
         }
         */
         if(this.cursors.up.isDown && this.player.body.onFloor()){       // Key is pressed and player is on floor
-            this.player.body.velocity.y = -375;
+            this.player.body.velocity.y = -350;
             jumpTimer = 1;                                              // Sets it != 0 so player is allowed to jump
         } else if(this.cursors.up.isDown && (jumpTimer != 0)) {
             console.log(jumpTimer);
@@ -99,7 +78,7 @@ var main_state = {
                 jumpTimer = 15;
             } else {
                 jumpTimer++;                                            // While player is jumping, some kind of timer ++
-                this.player.body.velocity.y = -375;
+                this.player.body.velocity.y = -350;
             }
         } else if(jumpTimer != 0){                                      // Resets the "timer" when player is on floor && !jumping
             jumpTimer = 0;
@@ -115,11 +94,5 @@ var main_state = {
         collectable.kill();
     },
 };
-
-
-// Add and start the 'main' state to start the game
-game.state.add('main', main_state);  
-game.state.start('main'); 
-
 
 // Palette from http://www.colourlovers.com/palette/1473/Ocean_Five
