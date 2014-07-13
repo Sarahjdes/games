@@ -13,6 +13,8 @@ var loadState = {
 
 		// Load all assets 
 		game.load.spritesheet('player', 'assets/ariel_spritesheet.png', 32, 32); 
+		game.load.image('collectableSlots', 'assets/collectableSlots.png');
+		game.load.image('collectableScore', 'assets/collectableScore.png');
 		game.load.image('collectable', 'assets/collectable.png');
 		game.load.image('tiles', 'assets/arielplatform_tiles.png');
 		game.load.tilemap('map', 'assets/tilemap.csv', null, Phaser.Tilemap.CSV);

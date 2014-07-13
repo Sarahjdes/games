@@ -1,5 +1,7 @@
 var jumpTimer = 0;
 
+var score = 0;
+
 var playState = {
 
     create: function() { 
@@ -17,10 +19,8 @@ var playState = {
     	// this.layer.debug = true;
 
     	// Set up player
-    	this.player = this.game.add.sprite(640, 175, 'player');
+    	this.player = this.game.add.sprite(240, 100, 'player');
     	this.game.physics.enable(this.player); 	// enable physics on this player
-
-    	//this.game.physics.arcade.gravity.y = 300;
 
         this.player.body.damping = 1;
     	this.player.body.collideWorldBounds = true;
@@ -32,12 +32,16 @@ var playState = {
 
         this.cursors = this.game.input.keyboard.createCursorKeys(); 
 
+        // Score 
+        this.collectableSlots = game.add.sprite(8, 8, 'collectableSlots'); 
+        this.collectableSlots.fixedToCamera = true;
+
         // Collectables
         this.collectables = this.game.add.group();
         this.collectables.enableBody = true;
 
-
         this.createCollectable(4,6);
+        this.createCollectable(4,12);
 
     },
     
@@ -83,6 +87,7 @@ var playState = {
         } else if(jumpTimer != 0){                                      // Resets the "timer" when player is on floor && !jumping
             jumpTimer = 0;
         } 
+
     },
 
     createCollectable: function(x,y) {
@@ -91,6 +96,11 @@ var playState = {
     },
 
     collectCollectable: function(player, collectable) {
+        this.collectableScore = game.add.sprite(24+(score*48), 24, 'collectableScore');
+        this.collectableScore.fixedToCamera = true;
+
+        score++;
+
         collectable.kill();
     },
 };
