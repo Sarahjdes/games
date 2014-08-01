@@ -42,6 +42,9 @@ var playState = {
 
         this.createCollectable(4,6);
         this.createCollectable(4,12);
+        this.createCollectable(4,10);
+        this.createCollectable(4,11);
+        this.createCollectable(4,9);
 
     },
     
@@ -74,8 +77,6 @@ var playState = {
             this.player.body.velocity.y = -375;
             jumpTimer = 1;                                              // Sets it != 0 so player is allowed to jump
         } else if(this.cursors.up.isDown && (jumpTimer != 0)) {
-            console.log(jumpTimer);
-            console.log(this.player.body.velocity.y);
             if(jumpTimer > 15){                                         // Has reached max duration of the jump
                 jumpTimer = 0;                                          // Doesn't allow the player to jump anymore
             } else if(this.player.body.velocity.y == 0){
@@ -87,6 +88,8 @@ var playState = {
         } else if(jumpTimer != 0){                                      // Resets the "timer" when player is on floor && !jumping
             jumpTimer = 0;
         } 
+
+        console.log("(" + Math.round(this.player.position.x/32 + 1) + "," + Math.round(this.player.position.y/32 + 1) + ")");
 
     },
 
