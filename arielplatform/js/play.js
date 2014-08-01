@@ -46,6 +46,11 @@ var playState = {
         this.createCollectable(4,11);
         this.createCollectable(4,9);
 
+        // Trap
+        this.trap = this.game.add.sprite(320,352, 'trap'); 
+        this.game.physics.enable(this.trap);        // Enables physics on trap so it can check for collide in update
+        this.trap.body.immovable = true;            // Makes it immovable so it won't move when touched by player
+
     },
     
     update: function() {
@@ -53,6 +58,7 @@ var playState = {
 
 		this.game.physics.arcade.collide(this.layer, this.player);
         this.game.physics.arcade.collide(this.layer, this.collectables);
+        this.game.physics.arcade.collide(this.player, this.trap);
 
         this.game.physics.arcade.overlap(this.player, this.collectables, this.collectCollectable, null, this.game);
 
@@ -105,6 +111,9 @@ var playState = {
         score++;
 
         collectable.kill();
+
+        if(score == 5){
+        }
     },
 };
 
