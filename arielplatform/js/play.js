@@ -97,6 +97,11 @@ var playState = {
 
         console.log("(" + Math.round(this.player.position.x/32 + 1) + "," + Math.round(this.player.position.y/32 + 1) + ")");
 
+        // Kill trap when score reaches 5
+        if(score == 5){
+            this.trap.kill();
+        }
+
     },
 
     createCollectable: function(x,y) {
@@ -111,10 +116,8 @@ var playState = {
         score++;
 
         collectable.kill();
-
-        if(score == 5){
-        }
     },
+
 };
 
 
