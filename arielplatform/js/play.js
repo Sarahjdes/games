@@ -35,6 +35,7 @@ var playState = {
         // Score 
         this.collectableSlots = game.add.sprite(8, 8, 'collectableSlots'); 
         this.collectableSlots.fixedToCamera = true;
+        this.collectableSlots.alpha = 0.8;
 
         // Collectables
         this.collectables = this.game.add.group();
