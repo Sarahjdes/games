@@ -20,6 +20,8 @@ var loadState = {
 		game.load.image('tiles', 'assets/arielplatform_tiles.png');
 		game.load.tilemap('map', 'assets/tilemap.csv', null, Phaser.Tilemap.CSV);
 		game.load.image('arielLogo', 'assets/arielLogo.png');
+		game.load.image('trapClosed', 'assets/trapClosed.png');
+		game.load.image('trapOpen', 'assets/trapOpen.png');
 
 	}, 
 
