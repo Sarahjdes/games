@@ -14,6 +14,7 @@ var loadState = {
 		// Load all assets 
 		game.load.spritesheet('player', 'assets/ariel_spritesheet.png', 32, 32); 
 		game.load.image('collectableSlots', 'assets/collectableSlots.png');
+		game.load.image('collectableSlotsOutline', 'assets/collectableSlotsOutline.png');
 		game.load.image('collectableScore', 'assets/collectableScore.png');
 		game.load.image('collectable', 'assets/collectable.png');
 		game.load.image('trap', 'assets/trap.png');

@@ -36,6 +36,8 @@ var playState = {
         this.collectableSlots = game.add.sprite(8, 8, 'collectableSlots'); 
         this.collectableSlots.fixedToCamera = true;
         this.collectableSlots.alpha = 0.8;
+        this.collectableSlotsOutline = game.add.sprite(8, 8, 'collectableSlotsOutline');
+        this.collectableSlotsOutline.fixedToCamera = true;
 
         // Collectables
         this.collectables = this.game.add.group();
@@ -51,7 +53,7 @@ var playState = {
         this.trapOpen = this.game.add.sprite(320,352,'trapOpen');       // Open trap is behind
         this.trapClosed = this.game.add.sprite(320,352,'trapClosed');   // Closed trap is on top
         this.game.physics.enable(this.trapClosed);                      // Physics is only enabled on closed
-        this.trapClosed.body.immovable = true;   
+        this.trapClosed.body.immovable = true;
 
     },
     
@@ -113,7 +115,7 @@ var playState = {
     },
 
     collectCollectable: function(player, collectable) {
-        this.collectableScore = game.add.sprite(24+(score*48), 24, 'collectableScore');
+        this.collectableScore = game.add.sprite(56+(score*48), 57, 'collectableScore');
         this.collectableScore.fixedToCamera = true;
 
         score++;
