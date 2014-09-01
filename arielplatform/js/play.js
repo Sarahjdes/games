@@ -2,21 +2,23 @@ var jumpTimer = 0;
 
 var score = 0;
 
+var congratulations; 
+
 var playState = {
 
     create: function() { 
     	// Fuction called after 'preload' to setup the game    
 
     	// Set up map
-    	this.map = this.game.add.tilemap('map', 32, 32);
-    	this.map.addTilesetImage('tiles');
+    	this.map = this.game.add.tilemap('map');
+        this.map.addTilesetImage('tileset');
 
-    	this.map.setCollisionBetween(2,5);
-
-    	this.layer = this.map.createLayer(0);
+    	this.layer = this.map.createLayer('Calque de Tile 1');
     	this.layer.resizeWorld();
 
-    	// this.layer.debug = true;
+        this.map.setCollisionBetween(1,100);
+
+    	//this.layer.debug = true;
 
         // Display instruction  ->  between tiles and player, second bg
         this.instructions = this.game.add.sprite(400, game.world.centerY, 'instructions');
@@ -54,8 +56,8 @@ var playState = {
         this.createCollectable(4,9);
 
         // Trap
-        this.trapOpen = this.game.add.sprite(320,352,'trapOpen');       // Open trap is behind
-        this.trapClosed = this.game.add.sprite(320,352,'trapClosed');   // Closed trap is on top
+        this.trapOpen = this.game.add.sprite(320,480,'trapOpen');       // Open trap is behind
+        this.trapClosed = this.game.add.sprite(320,480,'trapClosed');   // Closed trap is on top
         this.game.physics.enable(this.trapClosed);                      // Physics is only enabled on closed
         this.trapClosed.body.immovable = true;
 
@@ -110,6 +112,10 @@ var playState = {
             this.trapClosed.kill();
         }
 
+        if(this.cursors.down.isDown){       // Will happen if user reachs a certain position
+            this.endGame();
+        }
+
     },
 
     createCollectable: function(x,y) {
@@ -126,8 +132,9 @@ var playState = {
         collectable.kill();
     },
 
-    closeInstructions: function(){
-        this.instructions.kill();
+    endGame: function(){
+        this.player.kill();
+        this.game.add.sprite(200,100,'congratulations');
     }
 
 };
