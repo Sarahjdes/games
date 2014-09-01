@@ -23,6 +23,7 @@ var loadState = {
 		game.load.image('arielLogo', 'assets/arielLogo.png');
 		game.load.image('trapClosed', 'assets/trapClosed.png');
 		game.load.image('trapOpen', 'assets/trapOpen.png');
+		game.load.image('instructions', 'assets/instructions.png');
 
 	}, 
 

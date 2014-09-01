@@ -18,6 +18,10 @@ var playState = {
 
     	// this.layer.debug = true;
 
+        // Display instruction  ->  between tiles and player, second bg
+        this.instructions = this.game.add.sprite(400, game.world.centerY, 'instructions');
+        this.instructions.anchor.set(0.5);
+
     	// Set up player
     	this.player = this.game.add.sprite(240, 100, 'player');
     	this.game.physics.enable(this.player); 	// enable physics on this player
@@ -99,8 +103,7 @@ var playState = {
             jumpTimer = 0;
         } 
 
-        console.log("(" + Math.round(this.player.position.x/32 + 1) + "," + Math.round(this.player.position.y/32 + 1) + ")");
-
+        // console.log("(" + Math.round(this.player.position.x/32 + 1) + "," + Math.round(this.player.position.y/32 + 1) + ")");
 
         // Kill trap when score reaches 5
         if(score == 5){
@@ -122,6 +125,10 @@ var playState = {
 
         collectable.kill();
     },
+
+    closeInstructions: function(){
+        this.instructions.kill();
+    }
 
 };
 
