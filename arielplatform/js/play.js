@@ -56,8 +56,8 @@ var playState = {
         this.createCollectable(4,9);
 
         // Trap
-        this.trapOpen = this.game.add.sprite(320,480,'trapOpen');       // Open trap is behind
-        this.trapClosed = this.game.add.sprite(320,480,'trapClosed');   // Closed trap is on top
+        this.trapOpen = this.game.add.sprite(320,this.game.height-160,'trapOpen');       // Open trap is behind
+        this.trapClosed = this.game.add.sprite(320,this.game.height-160,'trapClosed');   // Closed trap is on top
         this.game.physics.enable(this.trapClosed);                      // Physics is only enabled on closed
         this.trapClosed.body.immovable = true;
 
@@ -71,6 +71,7 @@ var playState = {
         this.game.physics.arcade.collide(this.player, this.trapClosed);
 
         this.game.physics.arcade.overlap(this.player, this.collectables, this.collectCollectable, null, this.game);
+        this.game.physics.arcade.overlap(this.player, this.trapClosed, this.endGame, null, this.game);
 
         this.player.body.velocity.x = 0;
 
@@ -105,14 +106,14 @@ var playState = {
             jumpTimer = 0;
         } 
 
-        // console.log("(" + Math.round(this.player.position.x/32 + 1) + "," + Math.round(this.player.position.y/32 + 1) + ")");
+        console.log("(" + Math.round(this.player.position.x/32 + 1) + "," + Math.round(this.player.position.y/32 + 1) + ")");
 
         // Kill trap when score reaches 5
         if(score == 5){
             this.trapClosed.kill();
         }
 
-        if(this.cursors.down.isDown){       // Will happen if user reachs a certain position
+        if((this.player.position.x/32 + 1) >= 11 && (this.player.position.x/32 + 1) <= 13 && (this.player.position.y/32 + 1) >= 12 && (this.player.position.y/32 +1) <= 14) {
             this.endGame();
         }
 
