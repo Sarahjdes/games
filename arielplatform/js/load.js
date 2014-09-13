@@ -25,7 +25,7 @@ var loadState = {
 		game.load.image('trapClosed', 'assets/trapClosed.png');
 		game.load.image('trapOpen', 'assets/trapOpen.png');
 		game.load.image('instructions', 'assets/instructions.png');				// http://www.colourlovers.com/palette/483939/A_Pup_in_my_Cup
-		game.load.image('congratulations', 'assets/congratulations.png');
+		game.load.image('congratulations', 'assets/congratulations.png');		// http://www.colourlovers.com/palette/2856327/Ice_Queen
 
 	}, 
 

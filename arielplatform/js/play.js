@@ -61,6 +61,10 @@ var playState = {
         this.game.physics.enable(this.trapClosed);                      // Physics is only enabled on closed
         this.trapClosed.body.immovable = true;
 
+        // Congratulation message
+        this.congratsSprite = this.game.add.sprite(200,100,'congratulations');
+        this.congratsSprite.visible = false; 
+
     },
     
     update: function() {
@@ -91,7 +95,7 @@ var playState = {
         }
         */
         if(this.cursors.up.isDown && this.player.body.onFloor()){       // Key is pressed and player is on floor
-            this.player.body.velocity.y = -375;
+            this.player.body.velocity.y = -200;
             jumpTimer = 1;                                              // Sets it != 0 so player is allowed to jump
         } else if(this.cursors.up.isDown && (jumpTimer != 0)) {
             if(jumpTimer > 15){                                         // Has reached max duration of the jump
@@ -113,7 +117,7 @@ var playState = {
             this.trapClosed.kill();
         }
 
-        if((this.player.position.x/32 + 1) >= 11 && (this.player.position.x/32 + 1) <= 13 && (this.player.position.y/32 + 1) >= 12 && (this.player.position.y/32 +1) <= 14) {
+        if(Math.round(this.player.position.x/32 + 1) == 12 && Math.round(this.player.position.y/32 + 1) <= 15) {
             this.endGame();
         }
 
@@ -135,7 +139,7 @@ var playState = {
 
     endGame: function(){
         this.player.kill();
-        this.game.add.sprite(200,100,'congratulations');
+        this.congratsSprite.visible = true;
     }
 
 };
