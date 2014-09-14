@@ -16,7 +16,7 @@ var playState = {
     	this.layer = this.map.createLayer('Calque de Tile 1');
     	this.layer.resizeWorld();
 
-        this.map.setCollisionBetween(1,100);
+        this.map.setCollisionBetween(1,96);
 
     	//this.layer.debug = true;
 
@@ -117,7 +117,7 @@ var playState = {
             this.trapClosed.kill();
         }
 
-        if(Math.round(this.player.position.x/32 + 1) == 12 && Math.round(this.player.position.y/32 + 1) <= 15) {
+        if(Math.round(this.player.position.x/32 + 1) == 12 && Math.round(this.player.position.y/32 + 1) >= 12) {
             this.endGame();
         }
 
