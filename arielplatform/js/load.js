@@ -17,13 +17,19 @@ var loadState = {
 		game.load.image('collectableSlotsOutline', 'assets/collectableSlotsOutline.png');
 		game.load.image('collectableScore', 'assets/collectableScore.png');
 		game.load.image('collectable', 'assets/collectable.png');
-		game.load.image('trap', 'assets/trap.png');
 		game.load.image('tileset', 'assets/tileset.png');
-		// game.load.tilemap('map', 'assets/tilemap.csv', null, Phaser.Tilemap.CSV);
 		game.load.tilemap('map', 'assets/map.json', null, Phaser.Tilemap.TILED_JSON);
 		game.load.image('arielLogo', 'assets/arielLogo.png');
+		game.load.image('arielTitle', 'assets/arielTitle.png');
+		game.load.image('arielTome', 'assets/arielTome.png');
+		game.load.image('keyUp', 'assets/keyUp.png');
 		game.load.image('trapClosed', 'assets/trapClosed.png');
 		game.load.image('trapOpen', 'assets/trapOpen.png');
+		game.load.image('trivia01', 'assets/trivia01.png');
+		game.load.image('trivia02', 'assets/trivia02.png');
+		game.load.image('trivia03', 'assets/trivia03.png');
+		game.load.image('trivia04', 'assets/trivia04.png');
+		game.load.image('trivia05', 'assets/trivia05.png');
 		game.load.image('instructions', 'assets/instructions.png');				// http://www.colourlovers.com/palette/483939/A_Pup_in_my_Cup
 		game.load.image('congratulations', 'assets/congratulations.png');		// http://www.colourlovers.com/palette/2856327/Ice_Queen
 

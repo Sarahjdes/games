@@ -1,0 +1,22 @@
+body {
+	background-color: #15bcde;
+	text-align: center;
+}
+
+div {
+	border: 30px solid;
+	border-color: #952595;
+	width: 800px;
+	height: 512;
+}
+
+p {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	width: 800px;
+}
+
+h1 {
+	font-family: 'Lobster', cursive;
+	font-size: xx-large;
+	color: white;
+}
