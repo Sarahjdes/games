@@ -3,7 +3,7 @@ var loadState = {
 	preload: function(){
 
 		// Add loading label
-		var loadingLabel = game.add.text(game.world.centerX, 150, 'Loading...', { font: '30px Cambria', fill: '#EDC951'}); 
+		var loadingLabel = game.add.text(game.world.centerX, 150, 'Chargement...', { font: '30px Cambria', fill: '#EDC951'}); 
 		loadingLabel.anchor.setTo(0.5, 0.5); 
 
 
