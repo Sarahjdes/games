@@ -32,6 +32,7 @@ var loadState = {
 		game.load.image('trivia05', 'assets/trivia05.png');
 		game.load.image('instructions', 'assets/instructions.png');				// http://www.colourlovers.com/palette/483939/A_Pup_in_my_Cup
 		game.load.image('congratulations', 'assets/congratulations.png');		// http://www.colourlovers.com/palette/2856327/Ice_Queen
+		game.load.audio('missionImpossibleTheme', ['assets/missionImpossibleTheme.mp3', 'assets/missionImpossibleTheme.ogg']);
 
 	}, 
 
