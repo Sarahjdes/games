@@ -3,7 +3,7 @@ var loadState = {
 	preload: function(){
 
 		// Add loading label
-		var loadingLabel = game.add.text(game.world.centerX, 150, 'Loading...', { font: '30px Cambria', fill: '#EDC951'}); 
+		var loadingLabel = game.add.text(game.world.centerX, 150, 'Chargement...', { font: '30px Cambria', fill: '#EDC951'}); 
 		loadingLabel.anchor.setTo(0.5, 0.5); 
 
 
@@ -32,7 +32,6 @@ var loadState = {
 		game.load.image('trivia05', 'assets/trivia05.png');
 		game.load.image('instructions', 'assets/instructions.png');				// http://www.colourlovers.com/palette/483939/A_Pup_in_my_Cup
 		game.load.image('congratulations', 'assets/congratulations.png');		// http://www.colourlovers.com/palette/2856327/Ice_Queen
-		game.load.audio('missionImpossibleTheme', ['assets/missionImpossibleTheme.mp3', 'assets/missionImpossibleTheme.ogg']);
 
 	}, 
 

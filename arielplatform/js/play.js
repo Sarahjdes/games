@@ -75,10 +75,6 @@ var playState = {
         this.congratsSprite.anchor.set(0.5);
         this.congratsSprite.visible = false; 
 
-        this.music = game.add.audio('missionImpossibleTheme');
-        this.music.volume = 0.5;
-        this.music.play();
-
     },
     
     update: function() {
