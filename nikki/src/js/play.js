@@ -7,11 +7,11 @@
 
     Play.prototype = {
         create: function () {
-            
+            this.scene = new window['nikki'].Scene(this);
         },
 
         update: function () {
-            
+            this.scene.update();
         },
 
     };
