@@ -6,6 +6,8 @@
 		this.play = this.scene.play;
         this.game = this.play.game;
 		
+        this.heros = new Phaser.Group(this.play.game);
+
 		this.init();
 		
 	}
@@ -13,7 +15,7 @@
  	Objects.prototype = {
 
  		init: function() {
-
+ 			this.addPlayer();
 
  		},
 
@@ -21,9 +23,9 @@
  			
  		},
 
- 		addAriel: function () {
-            var ariel = new window['ariel'].Ariel(this);
- 			this.ariels.add(ariel);
+ 		addPlayer: function () {
+ 			var nikki = new window['nikki'].Player(this);
+ 			this.heros.add(nikki);
  		},
 
  		checkWin: function () {

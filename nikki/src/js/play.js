@@ -2,7 +2,8 @@
     'use strict';
 
     function Play() {
-
+        this.scene = null;
+        this.objects = null;
     }
 
     Play.prototype = {

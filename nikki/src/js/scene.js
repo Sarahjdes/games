@@ -23,7 +23,8 @@
 
         update: function() {
             this.objects.update();
-            //this.controls.update();
+
+            this.game.physics.arcade.collide(this.layer, this.objects.heros);
 
         },
 
@@ -34,9 +35,9 @@
             this.layer = this.map.createLayer('Calque de Tile 1');
             this.layer.resizeWorld();
 
-            //this.layer.debug = false;
+            this.layer.debug = false;
 
-            this.map.setCollisionBetween(17,52);
+            this.map.setCollision(52);
         },
 
         addInstructions: function() {
