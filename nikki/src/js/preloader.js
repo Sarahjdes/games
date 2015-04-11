@@ -16,7 +16,7 @@
             this.load.tilemap('map','assets/tempmap.json',null,Phaser.Tilemap.TILED_JSON);
 
             this.load.spritesheet('nikki','assets/images/nikki_spritesheet.png', 32, 32);
-
+            this.load.spritesheet('paparazzi','assets/images/paparazzi_spreadsheet.png', 32, 32);
 
         },
 

@@ -15,7 +15,6 @@
 
         this.cursors = this.game.input.keyboard.createCursorKeys(); 
 
-        var mvt = 0;
   	};
 
     Player.prototype = Object.create(Phaser.Sprite.prototype);

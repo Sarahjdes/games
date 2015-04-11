@@ -10,7 +10,6 @@
         this.addInstructions();
 
         this.objects = new window['nikki'].Objects(this);
-        //this.controls = new window['nikki'].Controls(this);
 
         this.map = null;
         

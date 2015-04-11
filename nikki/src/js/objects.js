@@ -7,6 +7,7 @@
         this.game = this.play.game;
 		
         this.heros = new Phaser.Group(this.play.game);
+        this.baddies = new Phaser.Group(this.play.game);
 
 		this.init();
 		
@@ -16,7 +17,7 @@
 
  		init: function() {
  			this.addPlayer();
-
+ 			this.addEnemy([[100,100],[200,100]]);
  		},
 
  		update: function() {
@@ -26,6 +27,11 @@
  		addPlayer: function () {
  			var nikki = new window['nikki'].Player(this);
  			this.heros.add(nikki);
+ 		},
+
+ 		addEnemy: function (coordinates) {
+  			var paparazzi = new window['nikki'].Enemy(this,coordinates);
+ 			this.baddies.add(paparazzi);
  		},
 
  		checkWin: function () {
