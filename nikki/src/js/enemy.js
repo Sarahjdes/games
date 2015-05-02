@@ -33,7 +33,7 @@
             } else {
                 this.animations.play('left');
             }
-            this.body.velocity.x = this.direction * 120;
+            this.body.velocity[this.axis] = this.direction * 120;
             this.checkPosition();
             
     };
@@ -43,8 +43,14 @@
         if (coordinates[0][1] == coordinates[1][1]) {
             this.pointA = coordinates[0][0];
             this.pointB = coordinates[1][0];
+            this.axis = 'x';
+        } else if (coordinates[0][0] == coordinates[1][0]) {
+            this.pointA = coordinates[0][1];
+            this.pointB = coordinates[1][1];
+            this.axis = 'y';
+        } else {
+            console.log('something is wrong with (' + coordinates[0][0] + ',' + coordinates[0][1] + ')(' + coordinates[1][0] + ',' + coordinates[1][1] + ')');
         }
-
         if (this.pointB >= this.pointA){
             this.direction = 1; 
         } else {
@@ -56,7 +62,7 @@
 
     Enemy.prototype.checkPosition = function () {
         if (this.direction > 0) {
-            if (this.pointB - this.body.position.x > 0) {
+            if (this.pointB - this.body.position[this.axis] > 0) {
                 console.log('right');
             } else {
                 console.log('right and change');
@@ -64,7 +70,7 @@
                 this.changeDirection();
             }
         } else {
-            if (this.pointA - this.body.position.x > 0) {
+            if (this.pointA - this.body.position[this.axis] > 0) {
                 console.log('left and change');
                 
                 this.changeDirection();
