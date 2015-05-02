@@ -10,9 +10,7 @@
         Phaser.Sprite.call(this, this.game, coordinates[0][0], coordinates[0][1], this.key);    // places the player
         //this.anchor.setTo(0.5, 0.5);
 
-        this.init(coordinates);
-        this.directionArray(coordinates);
-        this.destinationCoordinates(coordinates);
+        this.treatCoordinates(coordinates);
         this.animateSprite();
         this.physics();
 
@@ -24,47 +22,61 @@
     Enemy.prototype.contructor = Enemy;
 
     Enemy.prototype.init = function (coordinates) {
-        //console.log(coordinates[0][0]);
-        //console.log(coordinates[0][1]);
+        console.log(coordinates[0][0]);
+        console.log(coordinates[0][1]);
     };
-
-
-    Enemy.prototype.directionArray = function (coordinates) {       // according to Ilian, this can be shortened even more
-        if (coordinates[1][0] - coordinates[0][0] > 0) {
-            this.direction = ['right','x',1]
-        } else if (coordinates[1][0] - coordinates[0][0] < 0) {
-            this.direction = ['left','x',-1]
-        } else if (coordinates[1][1] - coordinates[0][1] > 0) {
-            this.direction = ['up','y',1]
-        } else if (coordinates[1][1] - coordinates[0][1] < 0) {
-            this.direction = ['down','y',-1]
-        } 
-    };
-
-
-    Enemy.prototype.destinationCoordinates = function (coordinates) {
-        this.destinationX = coordinates[1][0];
-        this.destinationY = coordinates[1][1];
-
-        console.log("Dest X : " + this.destinationX);
-        console.log("Dest Y : " + this.destinationY);
-        
-    }; 
 
 
     Enemy.prototype.update = function () { 
+            if (this.direction > 0) {
+                 this.animations.play('right');
+            } else {
+                this.animations.play('left');
+            }
+            this.body.velocity.x = this.direction * 120;
+            this.checkPosition();
+            
+    };
 
-        if (this.destinationX == this.body.position.x && this.destinationY == this.body.position.y) {
-            console.log('You have arrived!');
-            this.body.velocity.x = 0;
-        } else {
-            this.animations.play(this.direction[0]);
-                if (this.direction[1] == 'x') {
-                    this.body.velocity.x = this.direction[2] * 120;
-                } else if (this.direction[1] == 'y') {
-                    this.body.velocity.y = this.direction[2] * 120;
-                }
+
+    Enemy.prototype.treatCoordinates = function (coordinates) {
+        if (coordinates[0][1] == coordinates[1][1]) {
+            this.pointA = coordinates[0][0];
+            this.pointB = coordinates[1][0];
         }
+
+        if (this.pointB >= this.pointA){
+            this.direction = 1; 
+        } else {
+            this.direction = -1;
+        }
+
+    };
+ 
+
+    Enemy.prototype.checkPosition = function () {
+        if (this.direction > 0) {
+            if (this.pointB - this.body.position.x > 0) {
+                console.log('right');
+            } else {
+                console.log('right and change');
+                
+                this.changeDirection();
+            }
+        } else {
+            if (this.pointA - this.body.position.x > 0) {
+                console.log('left and change');
+                
+                this.changeDirection();
+            } else {
+                console.log('left');
+            }
+        }
+    };
+
+
+    Enemy.prototype.changeDirection = function () {
+        this.direction *= -1;
     };
 
 

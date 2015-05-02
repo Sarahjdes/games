@@ -17,7 +17,7 @@
 
  		init: function() {
  			this.addPlayer();
- 			this.addEnemy([[100,100],[200,100]]);
+ 			this.addEnemy([[100,100],[400,100]]);
  		},
 
  		update: function() {
