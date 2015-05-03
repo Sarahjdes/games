@@ -17,8 +17,8 @@
 
  		init: function() {
  			this.addPlayer();
- 			this.addEnemy([[100,200],[100,300]]);
- 			this.addEnemy([[100,300],[200,300]]);
+ 			this.addEnemy([[500,400],[500,200]],150);
+ 			this.addEnemy([[100,300],[200,300]],120);
  		},
 
  		update: function() {
@@ -30,8 +30,8 @@
  			this.heros.add(nikki);
  		},
 
- 		addEnemy: function (coordinates) {
-  			var paparazzi = new window['nikki'].Enemy(this,coordinates);
+ 		addEnemy: function (coordinates,speed) {
+  			var paparazzi = new window['nikki'].Enemy(this,coordinates,speed);
  			this.baddies.add(paparazzi);
  		},
 

@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-  	var Enemy = function (objects,coordinates) {
+  	var Enemy = function (objects,coordinates,speed) {
         this.objects = objects;
         this.play = this.objects.scene.play;
         this.game = this.play.game;
@@ -9,6 +9,8 @@
         this.key = 'paparazzi';                                         // texture from preload
         Phaser.Sprite.call(this, this.game, coordinates[0][0], coordinates[0][1], this.key);    // places the player
         //this.anchor.setTo(0.5, 0.5);
+
+        this.speed = speed;
 
         this.treatCoordinates(coordinates);
         this.animateSprite();
@@ -41,9 +43,9 @@
                     this.animations.play('up');
                 }
             }
-            this.body.velocity[this.directionAxis] = this.direction * 120;
+            this.body.velocity[this.directionAxis] = this.direction * this.speed;
             this.checkPosition();
-            this.body.velocity[this.directionAxis] = this.direction * 120;
+            this.body.velocity[this.directionAxis] = this.direction * this.speed;
             
     };
 
