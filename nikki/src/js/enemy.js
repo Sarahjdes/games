@@ -28,8 +28,6 @@
 
 
     Enemy.prototype.update = function () { 
-            console.log(this.direction);
-            console.log(this.directionAxis);
             if (this.direction > 0) {
                 if (this.directionAxis == 'x') {
                     this.animations.play('right');
@@ -45,6 +43,7 @@
             }
             this.body.velocity[this.directionAxis] = this.direction * 120;
             this.checkPosition();
+            this.body.velocity[this.directionAxis] = this.direction * 120;
             
     };
 
@@ -71,15 +70,15 @@
  
 
     Enemy.prototype.checkPosition = function () {
-        if (this.direction > 0) {
-            if (this.pointB - this.body.position[this.directionAxis] < 0) {
-                this.changeDirection();
-            }
-        } else {
-            if (this.pointA - this.body.position[this.directionAxis] > 0) {                
-                this.changeDirection();
-            } 
+        if (this.body.position[this.directionAxis] < this.pointA && this.body.position[this.directionAxis] < this.pointB) {
+            this.changeDirection();
+        } else if (this.body.position[this.directionAxis] > this.pointA && this.body.position[this.directionAxis] > this.pointB) {
+            this.changeDirection();
         }
+
+        console.log(this.body.position[this.directionAxis]);
+        console.log(this.pointA);
+        console.log(this.pointB);
     };
 
 
