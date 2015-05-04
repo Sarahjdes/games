@@ -36,6 +36,7 @@
             this.body.velocity.y = 250;
         } else {
             this.animations.stop();
+            this.frame = 24;
         }
 
         this.verifyEnemyOverlap();
