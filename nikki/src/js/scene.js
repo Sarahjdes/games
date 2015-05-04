@@ -24,6 +24,7 @@
             this.objects.update();
 
             this.game.physics.arcade.collide(this.layer, this.objects.heros);
+            this.game.physics.arcade.collide(this.layer, this.objects.baddies);
 
         },
 

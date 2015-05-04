@@ -37,6 +37,8 @@
         } else {
             this.animations.stop();
         }
+
+        this.verifyEnemyOverlap();
     };
 
 
@@ -46,6 +48,16 @@
         this.animations.add('down', [24, 31, 38, 45], 10, true);
         this.animations.add('left', [24, 23, 21, 21], 10, true);
         this.animations.add('right', [24, 25, 26, 27], 10, true);
+    };
+
+
+    Player.prototype.verifyEnemyOverlap = function () {
+        this.game.physics.arcade.overlap(this.objects.baddies, this, this.enemyOverlap, null, this);
+    };
+
+
+    Player.prototype.enemyOverlap = function () {
+        this.kill();
     };
 
 

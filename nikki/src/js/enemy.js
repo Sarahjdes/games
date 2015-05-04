@@ -77,10 +77,6 @@
         } else if (this.body.position[this.directionAxis] > this.pointA && this.body.position[this.directionAxis] > this.pointB) {
             this.changeDirection();
         }
-
-        console.log(this.body.position[this.directionAxis]);
-        console.log(this.pointA);
-        console.log(this.pointB);
     };
 
 
