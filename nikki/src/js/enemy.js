@@ -1,18 +1,22 @@
 (function() {
 	'use strict';
 
-  	var Enemy = function (objects,coordinates,speed) {
+  	var Enemy = function (objects,tilesCoordinates,speed) {
         this.objects = objects;
         this.play = this.objects.scene.play;
         this.game = this.play.game;
 
         this.key = 'paparazzi';                                         // texture from preload
-        Phaser.Sprite.call(this, this.game, coordinates[0][0], coordinates[0][1], this.key);    // places the player
+        Phaser.Sprite.call(this, this.game, tilesCoordinates[0][0], tilesCoordinates[0][1], this.key);    // places the player
         //this.anchor.setTo(0.5, 0.5);
 
         this.speed = speed;
 
-        this.treatCoordinates(coordinates);
+        this.coordinates = [[10,10],[50,10]];
+
+        this.tilesToCoordinates(tilesCoordinates);
+
+        this.treatCoordinates(tilesCoordinates);
         this.animateSprite();
         this.physics();
 
@@ -23,7 +27,7 @@
     Enemy.prototype = Object.create(Phaser.Sprite.prototype);
     Enemy.prototype.contructor = Enemy;
 
-    Enemy.prototype.init = function (coordinates) {
+    Enemy.prototype.init = function (tilesCoordinates) {
         console.log(coordinates[0][0]);
         console.log(coordinates[0][1]);
     };
@@ -50,24 +54,34 @@
     };
 
 
-    Enemy.prototype.treatCoordinates = function (coordinates) {
-        if (coordinates[0][1] == coordinates[1][1]) {
-            this.pointA = coordinates[0][0];
-            this.pointB = coordinates[1][0];
+    Enemy.prototype.tilesToCoordinates = function (tilesCoordinates) {
+        for(var i = 0, length = tilesCoordinates.length; i < length; i++) {
+            tilesCoordinates[0][i] /= 2;
+            tilesCoordinates[1][i] /= 2;
+            debugger
+        }
+    };
+
+
+
+    Enemy.prototype.treatCoordinates = function (tilesCoordinates) {
+        if (this.coordinates[0][1] == this.coordinates[1][1]) {
+            this.pointA = this.coordinates[0][0];
+            this.pointB = this.coordinates[1][0];
             this.directionAxis = 'x';
-        } else if (coordinates[0][0] == coordinates[1][0]) {
-            this.pointA = coordinates[0][1];
-            this.pointB = coordinates[1][1];
+        } else if (this.coordinates[0][0] == this.coordinates[1][0]) {
+            this.pointA = this.coordinates[0][1];
+            this.pointB = this.coordinates[1][1];
             this.directionAxis = 'y';
         } else {
-            console.log('something is wrong with (' + coordinates[0][0] + ',' + coordinates[0][1] + ')(' + coordinates[1][0] + ',' + coordinates[1][1] + ')');
+            console.log('something is wrong with (' + this.coordinates[0][0] + ',' + this.coordinates[0][1] + ')(' + this.coordinates[1][0] + ',' + this.coordinates[1][1] + ')');
         }
         if (this.pointB >= this.pointA){
             this.direction = 1; 
         } else {
             this.direction = -1;
         }
-
+debugger
     };
  
 

@@ -10,7 +10,7 @@
         preload: function () {
             this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
 
-            this.load.image('nikkiLogo', 'assets/images/nikkiLogo.png');
+            this.load.image('nikkiLogo', 'assets/images/nikki_spritesheet.png');
 
             this.load.image('RPGpack_sheet','assets/RPGpack_sheet.png');
             this.load.tilemap('map','assets/tempmap.json',null,Phaser.Tilemap.TILED_JSON);

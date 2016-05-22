@@ -7,7 +7,7 @@
         this.game = this.play.game;
 
         this.key = 'nikki';                                         // texture from preload
-        Phaser.Sprite.call(this, this.game, 75, 75, this.key);    // places the player
+        Phaser.Sprite.call(this, this.game, 32, 32, this.key);    // places the player
         this.anchor.setTo(0.5, 0.5);
 
         this.animateSprite();
